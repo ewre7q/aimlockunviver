@@ -9,7 +9,6 @@ local StarterGui = game:GetService("StarterGui")
 
 local Holding = false
 local LockedTarget = nil
-local PredictionAmount = 0.13
 local FOV_RADIUS = 120
 local CurrentHighlight = nil
 local GUIVisible = true
@@ -164,8 +163,8 @@ RunService.RenderStepped:Connect(function()
 
 		if LockedTarget and LockedTarget.Character and LockedTarget.Character:FindFirstChild(getgenv().TargetPart) then
 			local part = LockedTarget.Character[getgenv().TargetPart]
-			local predicted = part.Position + (part.Velocity * PredictionAmount)
-			Camera.CFrame = CFrame.new(Camera.CFrame.Position, predicted)
+			Camera.CFrame = CFrame.new(Camera.CFrame.Position, part.Position)
 		end
 	end
 end)
+
